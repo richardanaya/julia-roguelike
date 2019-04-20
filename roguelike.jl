@@ -35,12 +35,15 @@ function Game_run(game::Game)
 	while true
 		i = getch()
 		if i == -1
+			# we have recieved nothing
 			continue
 		elseif i == 27
 			i = getch()
 			if i == -1
+				# we have received an ESCAPE key
 				break
 			elseif i == 91
+				# We might have an arrow
 				i = getch()
 				if i == 65
 					game.player_pos = (x=game.player_pos.x,y=max(game.player_pos.y-1,0))
