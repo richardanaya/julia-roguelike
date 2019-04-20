@@ -10,11 +10,12 @@ function Game_new()
 	# startup
 	stdscreen = initscr() # gets things started and gives us root window
 	cbreak()              # normalizes the terminal
+	curs_set(0)			  # hide cursor
 	noecho()              # this prevents cursor from blinking
 	nodelay(stdscreen,1)  # this makes input non blocking
 
 	clear()
-	max_x,max_y = getmaxyx(stdscreen)
+	max_y,max_x = getmaxyx(stdscreen)
 	player =
 	Game(
 		(x=max_x,y=max_y),
@@ -23,7 +24,9 @@ function Game_new()
 end
 
 function Game_render(game::Game)
-
+	clear()
+	mvprintw(game.player_pos.y,game.player_pos.x,"@")
+	refresh()
 end
 
 function Game_run(game::Game)
