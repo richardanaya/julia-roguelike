@@ -1,0 +1,15 @@
+using Libdl
+libncurses = Libdl.dlopen("libncurses")
+initscr() = ccall( Libdl.dlsym( libncurses, :initscr), Int32, () )
+cbreak() = ccall( Libdl.dlsym( libncurses, :cbreak), Nothing, () )
+nodelay(win,val) = ccall( Libdl.dlsym( libncurses, :nodelay), Nothing, (Int32,Int32),win,val)
+noecho() = ccall( Libdl.dlsym( libncurses, :noecho), Nothing, () )
+clear() = ccall( Libdl.dlsym( libncurses, :clear), Nothing, () )
+printw(msg) = ccall( Libdl.dlsym( libncurses, :printw), Nothing, (Cstring,), msg )
+getch() = ccall( Libdl.dlsym( libncurses, :getch), Int32, () )
+endwin() = ccall( Libdl.dlsym( libncurses, :endwin), Nothing, () )
+function getmaxyx(win)
+    max_x = ccall( Libdl.dlsym( libncurses, :getmaxx), Int32, (Int32,),win)
+    max_y = ccall( Libdl.dlsym( libncurses, :getmaxy), Int32, (Int32,),win)
+    return (max_y,max_x)
+end
