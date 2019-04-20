@@ -10,7 +10,7 @@ function Game_new()
 	# startup
 	stdscreen = initscr() # gets things started and gives us root window
 	cbreak()              # normalizes the terminal
-	curs_set(0)			  # hide cursor
+	curs_set(0)           # hide cursor
 	noecho()              # dont wait until newline
 	nodelay(stdscreen,1)  # this makes input non blocking and returns -1 if not key
 
